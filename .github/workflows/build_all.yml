@@ -326,7 +326,7 @@ jobs:
               name: sdrpp_raspios_bullseye_armhf
               path: ${{runner.workspace}}/sdrpp_debian_armhf.deb
 
-    build_debian_bookworm:
+    build_fedora_40:
         runs-on: ubuntu-latest
 
         steps:
