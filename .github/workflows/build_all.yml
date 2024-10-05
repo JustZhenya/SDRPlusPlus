@@ -336,17 +336,17 @@ jobs:
           run: cd $GITHUB_WORKSPACE/docker_builds/fedora_40 && docker build . --tag sdrpp_build
 
         - name: Run Container
-          run: docker run --name build -v $GITHUB_WORKSPACE:/root/SDRPlusPlus --env BUILD_NO="-$GITHUB_RUN_NUMBER" sdrpp_build /root/do_build.sh
+          run: docker run --name build -v $GITHUB_WORKSPACE:/root/SDRPlusPlus --env BUILD_NO=".$GITHUB_RUN_NUMBER" sdrpp_build /root/do_build.sh
 
         - name: Recover RPM Archive
           working-directory: ${{runner.workspace}}
-          run: docker cp build:/root/rpmbuild/RPMS/x86_64/sdrpp-1.2.0-$GITHUB_RUN_NUMBER-1.x86_64.rpm ./
+          run: docker cp build:/root/rpmbuild/RPMS/x86_64/sdrpp-1.2.0.$GITHUB_RUN_NUMBER-1.x86_64.rpm ./
 
-        - name: Save Deb Archive
+        - name: Save RPM Archive
           uses: actions/upload-artifact@v4
           with:
-              name: sdrpp-1.2.0-$GITHUB_RUN_NUMBER-1.x86_64
-              path: ${{runner.workspace}}/sdrpp-1.2.0-$GITHUB_RUN_NUMBER-1.x86_64.rpm
+              name: sdrpp-1.2.0.$GITHUB_RUN_NUMBER-1.x86_64
+              path: ${{runner.workspace}}/sdrpp-1.2.0.$GITHUB_RUN_NUMBER-1.x86_64.rpm
 
     build_android:
         runs-on: ubuntu-latest
@@ -394,7 +394,7 @@ jobs:
             mv sdrpp_debian_bookworm_amd64/sdrpp_debian_amd64.deb sdrpp_all/ && 
             mv sdrpp_debian_sid_amd64/sdrpp_debian_amd64.deb sdrpp_all/ && 
             mv sdrpp_raspios_bullseye_armhf/sdrpp_debian_armhf.deb sdrpp_all/ &&
-            mv sdrpp-1.2.0-$GITHUB_RUN_NUMBER-1.x86_64.rpm sdrpp_all/ &&
+            mv sdrpp-1.2.0.$GITHUB_RUN_NUMBER-1.x86_64.rpm sdrpp_all/ &&
             mv sdrpp_android/sdrpp.apk sdrpp_all/
 
         - uses: actions/upload-artifact@v4
