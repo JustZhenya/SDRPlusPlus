@@ -345,8 +345,8 @@ jobs:
         - name: Save RPM Archive
           uses: actions/upload-artifact@v4
           with:
-              name: sdrpp-1.2.0.$GITHUB_RUN_NUMBER-1.x86_64
-              path: ${{runner.workspace}}/sdrpp-1.2.0.$GITHUB_RUN_NUMBER-1.x86_64.rpm
+              name: sdrpp-1.2.0.${{github.run_number}}-1.x86_64
+              path: ${{runner.workspace}}/sdrpp-1.2.0.${{github.run_number}}-1.x86_64.rpm
 
     build_android:
         runs-on: ubuntu-latest
