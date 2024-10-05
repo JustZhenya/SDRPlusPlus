@@ -52,4 +52,4 @@ cmake .. -DOPT_BUILD_SDRPLAY_SOURCE=ON -DOPT_BUILD_BLADERF_SOURCE=OFF -DOPT_BUIL
 make VERBOSE=1 -j2
 
 cd ..
-sh make_debian_package.sh ./build 'libfftw3-dev, libglfw3-dev, libvolk1-dev, librtaudio-dev, libzstd-dev'
+sh make_debian_package.sh ./build 'amd64' 'libc6, libgcc1, libstdc++6, libvolk1.4, libfftw3-single3, librtaudio6, libzstd1, libglfw3, libopengl0' 'libportaudio2, libad9361-0, libairspyhf1, libairspy0, libbladerf1, libcodec2-0.8.1, libhackrf0, libiio0, liblimesuite18.06-1, librtlsdr0'

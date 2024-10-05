@@ -2,28 +2,31 @@
 
 # Create directory structure
 echo Create directory structure
-mkdir sdrpp_debian_amd64
-mkdir sdrpp_debian_amd64/DEBIAN
+DIR=sdrpp_debian_$2
+mkdir $DIR
+mkdir $DIR/DEBIAN
 
 # Create package info
 echo Create package info
-echo Package: sdrpp >> sdrpp_debian_amd64/DEBIAN/control
-echo Version: 1.2.0$BUILD_NO >> sdrpp_debian_amd64/DEBIAN/control
-echo Maintainer: Ryzerth >> sdrpp_debian_amd64/DEBIAN/control
-echo Architecture: all >> sdrpp_debian_amd64/DEBIAN/control
-echo Description: Bloat-free SDR receiver software >> sdrpp_debian_amd64/DEBIAN/control
-echo Depends: $2 >> sdrpp_debian_amd64/DEBIAN/control
+echo Package: sdrpp >> $DIR/DEBIAN/control
+echo Version: 1.2.0$BUILD_NO >> $DIR/DEBIAN/control
+echo Maintainer: Ryzerth, just_zhenya >> $DIR/DEBIAN/control
+echo Architecture: $2 >> $DIR/DEBIAN/control
+echo Description: Bloat-free SDR receiver software >> $DIR/DEBIAN/control
+echo Depends: $3 >> $DIR/DEBIAN/control
+echo Recommends: $4 >> $DIR/DEBIAN/control
 
 # Copying files
+echo Copy files
 ORIG_DIR=$PWD
 cd $1
-make install DESTDIR=$ORIG_DIR/sdrpp_debian_amd64
+make install DESTDIR=$ORIG_DIR/$DIR
 cd $ORIG_DIR
 
 # Create package
 echo Create package
-dpkg-deb --build sdrpp_debian_amd64
+dpkg-deb --build $DIR
 
 # Cleanup
 echo Cleanup
-rm -rf sdrpp_debian_amd64
+rm -rf $DIR
