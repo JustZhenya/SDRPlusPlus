@@ -52,4 +52,4 @@ cmake .. -DOPT_BUILD_BLADERF_SOURCE=ON -DOPT_BUILD_LIMESDR_SOURCE=ON -DOPT_BUILD
 make VERBOSE=1 -j2
 
 cd ..
-sh make_debian_package.sh ./build 'libfftw3-dev, libglfw3-dev, libvolk-dev, librtaudio-dev, libzstd-dev'
+sh make_debian_package.sh ./build 'libc6, libgcc-s1, libstdc++6, libvolk3.1t64, libfftw3-single3, librtaudio7, libzstd1, libglfw3, libopengl0' 'libportaudio2, libad9361-0, libairspyhf1, libairspy0, libbladerf2, libcodec2-1.2, libhackrf0, libiio0, liblimesuite23.11-1, librtlsdr0'
