@@ -318,7 +318,7 @@ jobs:
         - name: Save RPM Archive
           uses: actions/upload-artifact@v4
           with:
-              name: sdrpp-1.2.0.${{github.run_number}}-1.x86_64
+              name: sdrpp_fedora_40_x86_64
               path: ${{runner.workspace}}/sdrpp-1.2.0.${{github.run_number}}-1.x86_64.rpm
 
     build_ubuntu_focal:
@@ -454,11 +454,11 @@ jobs:
             mv sdrpp_debian_bullseye_amd64/sdrpp_debian_amd64.deb sdrpp_all/ && 
             mv sdrpp_debian_bookworm_amd64/sdrpp_debian_amd64.deb sdrpp_all/ && 
             mv sdrpp_debian_sid_amd64/sdrpp_debian_amd64.deb sdrpp_all/ && 
-            mv sdrpp-1.2.0.$GITHUB_RUN_NUMBER-1.x86_64.rpm sdrpp_all/ &&
-            mv sdrpp_ubuntu_focal_amd64/sdrpp_debian_amd64.deb sdrpp_all/sdrpp_ubuntu_focal_amd64.deb &&
-            mv sdrpp_ubuntu_jammy_amd64/sdrpp_debian_amd64.deb sdrpp_all/sdrpp_ubuntu_jammy_amd64.deb &&
-            mv sdrpp_ubuntu_oracular_amd64/sdrpp_debian_amd64.deb sdrpp_all/sdrpp_ubuntu_oracular_amd64.deb &&
-            mv sdrpp_ubuntu_noble_amd64/sdrpp_debian_amd64.deb sdrpp_all/sdrpp_ubuntu_noble_amd64.deb &&
+            mv sdrpp_fedora_40_x86_64/sdrpp-1.2.0.$GITHUB_RUN_NUMBER-1.x86_64.rpm sdrpp_all/ && 
+            mv sdrpp_ubuntu_focal_amd64/sdrpp_debian_amd64.deb sdrpp_all/ && 
+            mv sdrpp_ubuntu_jammy_amd64/sdrpp_debian_amd64.deb sdrpp_all/ && 
+            mv sdrpp_ubuntu_oracular_amd64/sdrpp_debian_amd64.deb sdrpp_all/ && 
+            mv sdrpp_ubuntu_noble_amd64/sdrpp_debian_amd64.deb sdrpp_all/ && 
             mv sdrpp_android/sdrpp.apk sdrpp_all/
 
         - uses: actions/upload-artifact@v4
