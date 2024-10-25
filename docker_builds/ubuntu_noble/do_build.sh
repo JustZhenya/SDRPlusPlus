@@ -53,4 +53,4 @@ make VERBOSE=1 -j2
 
 # why librtlsdr2???
 cd ..
-sh make_debian_package.sh ./build 'libc6, libgcc-s1, libstdc++6, libvolk3.1t64, libfftw3-single3, librtaudio6, libzstd1, libglfw3, libopengl0' 'libportaudio2, libad9361-0, libairspyhf1, libairspy0, libbladerf2, libcodec2-1.2, libhackrf0, libiio0, liblimesuite23.11-1, librtlsdr2'
+sh make_debian_package.sh ./build 'amd64' 'libc6, libgcc-s1, libstdc++6, libvolk3.1t64, libfftw3-single3, librtaudio6, libzstd1, libglfw3, libopengl0' 'libportaudio2, libad9361-0, libairspyhf1, libairspy0, libbladerf2, libcodec2-1.2, libhackrf0, libiio0, liblimesuite23.11-1, librtlsdr2'
