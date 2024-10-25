@@ -24,7 +24,7 @@ SDR++ is a cross-platform and open source SDR software with the aim of being blo
 * Proper .deb dependencies (no more unnecessary -dev packages)
 * Added SDR packages to Recommended for .deb
 * CI flow for Fedora 40 (WIP)
-* Temporary dropped Ubuntu builds, will bring back later
+* Updated Ubuntu Mantic to Ubuntu Oracular
 
 # Installing
 
