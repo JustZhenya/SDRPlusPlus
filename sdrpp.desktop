@@ -5,5 +5,6 @@ Type=Application
 Terminal=false
 Exec=@CMAKE_INSTALL_PREFIX@/bin/sdrpp
 Name=SDR++
+Comment=Bloat free and simple to use SDR software
 Icon=@CMAKE_INSTALL_PREFIX@/share/sdrpp/icons/sdrpp.png
-Categories=HamRadio
+Categories=Science;HamRadio;
