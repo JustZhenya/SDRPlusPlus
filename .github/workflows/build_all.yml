@@ -454,7 +454,7 @@ jobs:
             mv sdrpp_debian_bullseye_amd64/sdrpp_debian_amd64.deb sdrpp_all/sdrpp_debian_bullseye_amd64.deb && 
             mv sdrpp_debian_bookworm_amd64/sdrpp_debian_amd64.deb sdrpp_all/sdrpp_debian_bookworm_amd64.deb && 
             mv sdrpp_debian_sid_amd64/sdrpp_debian_amd64.deb sdrpp_all/sdrpp_debian_sid_amd64.deb && 
-            mv sdrpp_fedora_40_x86_64/sdrpp-1.2.0.$GITHUB_RUN_NUMBER-1.x86_64.rpm sdrpp_all/ && 
+            mv sdrpp_fedora_40_x86_64/sdrpp-1.2.0.$GITHUB_RUN_NUMBER-1.x86_64.rpm sdrpp_all/sdrpp_fedora_40_x86_64.rpm && 
             mv sdrpp_ubuntu_focal_amd64/sdrpp_debian_amd64.deb sdrpp_all/sdrpp_ubuntu_focal_amd64.deb && 
             mv sdrpp_ubuntu_jammy_amd64/sdrpp_debian_amd64.deb sdrpp_all/sdrpp_ubuntu_jammy_amd64.deb && 
             mv sdrpp_ubuntu_oracular_amd64/sdrpp_debian_amd64.deb sdrpp_all/sdrpp_ubuntu_oracular_amd64.deb && 
