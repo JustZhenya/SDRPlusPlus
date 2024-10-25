@@ -30,15 +30,13 @@ SDR++ is a cross-platform and open source SDR software with the aim of being blo
 
 ## Nightly Builds
 
-Nightly builds contain the very latest features and bugfixes. They are usually just stable as [normal releases](https://github.com/AlexandreRouma/SDRPlusPlus/releases) but are available basically minutes to hours after a change has been pushed to the code.
-
-You can download them [here](https://www.sdrpp.org/nightly). It'll redirect you to the latest nightly on GitHub, scroll down to "Artifacts" and click on the version for your OS.
+Nightly builds contain the very latest features and bugfixes. They are usually just stable as [normal releases](https://github.com/JustZhenya/SDRPlusPlus/releases) but are available basically minutes to hours after a change has been pushed to the code.
 
 GitHub currently requires an account for the files to be downloadable so make sure you are logged in.
 
 ## Windows
 
-Download the latest release from [the Releases page](https://github.com/AlexandreRouma/SDRPlusPlus/releases) and extract to the directory of your choice.
+Download the latest release from [the Releases page](https://github.com/JustZhenya/SDRPlusPlus/releases) and extract to the directory of your choice.
 
 To create a desktop shortcut, rightclick the exe and select `Send to -> Desktop (create shortcut)`, then, rename the shortcut on the desktop to whatever you want.
 
@@ -46,12 +44,22 @@ To create a desktop shortcut, rightclick the exe and select `Send to -> Desktop 
 
 ### Debian-based (Ubuntu, Mint, etc)
 
-Download the latest release from [the Releases page](https://github.com/AlexandreRouma/SDRPlusPlus/releases) and extract to the directory of your choice.
+Download the latest release from [the Releases page](https://github.com/JustZhenya/SDRPlusPlus/releases) and extract to the directory of your choice.
 
 Then, use apt to install it:
 
 ```sh
 sudo apt install path/to/the/sdrpp_debian_amd64.deb
+```
+
+### Fedora
+
+Download the latest release from [the Releases page](https://github.com/JustZhenya/SDRPlusPlus/releases) and extract to the directory of your choice.
+
+Then, use apt to install it:
+
+```sh
+sudo dnf install path/to/the/sdrpp_fedora_40_x86_64.deb
 ```
 
 **IMPORTANT: You must install the drivers for your SDR. Follow instructions from your manufacturer as to how to do this on your particular distro.**
@@ -64,15 +72,15 @@ Install from source following the instructions below.
 
 ### Other
 
-There are currently no existing packages for other distributions, for these systems you'll have to [build from source](https://github.com/AlexandreRouma/SDRPlusPlus#building-on-linux--bsd).
+There are currently no existing packages for other distributions, for these systems you'll have to [build from source](https://github.com/JustZhenya/SDRPlusPlus#building-on-linux--bsd).
 
 ## MacOS
 
-Download the app bundle from the latest [nightly build](https://www.sdrpp.org/nightly)
+Download the app bundle from the latest [nightly build](https://github.com/JustZhenya/SDRPlusPlus/releases/tag/nightly)
 
 ## BSD
 
-There are currently no BSD packages, refer to [Building on Linux / BSD](https://github.com/AlexandreRouma/SDRPlusPlus#building-on-linux--bsd) for instructions on building from source.
+There are currently no BSD packages, refer to [Building on Linux / BSD](https://github.com/JustZhenya/SDRPlusPlus#building-on-linux--bsd) for instructions on building from source.
 
 # Building on Windows
 
