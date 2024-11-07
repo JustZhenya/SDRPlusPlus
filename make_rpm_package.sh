@@ -39,4 +39,4 @@ EOF
 
 # Create package
 echo Create package
-rpmbuild -ba sdrpp.spec
+rpmbuild -ba ~/rpmbuild/SPECS/sdrpp.spec
