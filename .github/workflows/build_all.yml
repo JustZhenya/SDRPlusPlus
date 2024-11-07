@@ -319,7 +319,7 @@ jobs:
           uses: actions/upload-artifact@v4
           with:
               name: sdrpp_fedora_40_x86_64
-              path: ${{runner.workspace}}/sdrpp-1.2.0.${{github.run_number}}-1.x86_64.rpm
+              path: ${{runner.workspace}}/sdrpp-1.2.0-${{github.run_number}}.x86_64.rpm
     
     build_fedora_41:
         runs-on: ubuntu-latest
