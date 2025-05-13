@@ -386,7 +386,29 @@ jobs:
           with:
               name: sdrpp_ubuntu_jammy_amd64
               path: ${{runner.workspace}}/sdrpp_debian_amd64.deb
-    
+
+    build_ubuntu_noble:
+        runs-on: ubuntu-latest
+
+        steps:
+        - uses: actions/checkout@v4
+        
+        - name: Create Docker Image
+          run: cd $GITHUB_WORKSPACE/docker_builds/ubuntu_noble && docker build . --tag sdrpp_build
+
+        - name: Run Container
+          run: docker run --name build -v $GITHUB_WORKSPACE:/root/SDRPlusPlus --env BUILD_NO="-$GITHUB_RUN_NUMBER" sdrpp_build /root/do_build.sh
+
+        - name: Recover Deb Archive
+          working-directory: ${{runner.workspace}}
+          run: docker cp build:/root/SDRPlusPlus/sdrpp_debian_amd64.deb ./
+
+        - name: Save Deb Archive
+          uses: actions/upload-artifact@v4
+          with:
+              name: sdrpp_ubuntu_noble_amd64
+              path: ${{runner.workspace}}/sdrpp_debian_amd64.deb
+
     build_ubuntu_oracular:
         runs-on: ubuntu-latest
 
@@ -409,14 +431,14 @@ jobs:
               name: sdrpp_ubuntu_oracular_amd64
               path: ${{runner.workspace}}/sdrpp_debian_amd64.deb
 
-    build_ubuntu_noble:
+    build_ubuntu_plucky:
         runs-on: ubuntu-latest
 
         steps:
         - uses: actions/checkout@v4
         
         - name: Create Docker Image
-          run: cd $GITHUB_WORKSPACE/docker_builds/ubuntu_noble && docker build . --tag sdrpp_build
+          run: cd $GITHUB_WORKSPACE/docker_builds/ubuntu_plucky && docker build . --tag sdrpp_build
 
         - name: Run Container
           run: docker run --name build -v $GITHUB_WORKSPACE:/root/SDRPlusPlus --env BUILD_NO="-$GITHUB_RUN_NUMBER" sdrpp_build /root/do_build.sh
@@ -428,7 +450,7 @@ jobs:
         - name: Save Deb Archive
           uses: actions/upload-artifact@v4
           with:
-              name: sdrpp_ubuntu_noble_amd64
+              name: sdrpp_ubuntu_plucky_amd64
               path: ${{runner.workspace}}/sdrpp_debian_amd64.deb
 
     build_android:
@@ -471,8 +493,9 @@ jobs:
           'build_fedora_42',
           'build_ubuntu_focal',
           'build_ubuntu_jammy',
-          'build_ubuntu_oracular',
           'build_ubuntu_noble',
+          'build_ubuntu_oracular',
+          'build_ubuntu_plucky',
           'build_android'
         ]
         runs-on: ubuntu-latest
@@ -495,8 +518,9 @@ jobs:
             mv sdrpp_fedora_42_x86_64/sdrpp-1.2.1-$GITHUB_RUN_NUMBER.x86_64.rpm sdrpp_all/sdrpp_fedora_42_x86_64.rpm && 
             mv sdrpp_ubuntu_focal_amd64/sdrpp_debian_amd64.deb sdrpp_all/sdrpp_ubuntu_focal_amd64.deb && 
             mv sdrpp_ubuntu_jammy_amd64/sdrpp_debian_amd64.deb sdrpp_all/sdrpp_ubuntu_jammy_amd64.deb && 
-            mv sdrpp_ubuntu_oracular_amd64/sdrpp_debian_amd64.deb sdrpp_all/sdrpp_ubuntu_oracular_amd64.deb && 
             mv sdrpp_ubuntu_noble_amd64/sdrpp_debian_amd64.deb sdrpp_all/sdrpp_ubuntu_noble_amd64.deb && 
+            mv sdrpp_ubuntu_oracular_amd64/sdrpp_debian_amd64.deb sdrpp_all/sdrpp_ubuntu_oracular_amd64.deb && 
+            mv sdrpp_ubuntu_plucky_amd64/sdrpp_debian_amd64.deb sdrpp_all/sdrpp_ubuntu_plucky_amd64.deb && 
             mv sdrpp_android/sdrpp.apk sdrpp_all/
 
         - uses: actions/upload-artifact@v4
@@ -523,7 +547,7 @@ jobs:
         - uses: actions/checkout@v4
 
         - name: Install codespell
-          run: sudo apt update -y && sudo apt install -y codespell
+          run: sudo apt-get update -y && sudo apt-get install -y codespell
         
         - name: Running codespell
           run: cd $GITHUB_WORKSPACE && codespell -q 2 || true
