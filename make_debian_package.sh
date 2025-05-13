@@ -9,7 +9,7 @@ mkdir $DIR/DEBIAN
 # Create package info
 echo Create package info
 echo Package: sdrpp >> $DIR/DEBIAN/control
-echo Version: 1.2.0$BUILD_NO >> $DIR/DEBIAN/control
+echo Version: 1.2.1$BUILD_NO >> $DIR/DEBIAN/control
 echo Maintainer: Ryzerth, just_zhenya >> $DIR/DEBIAN/control
 echo Architecture: $2 >> $DIR/DEBIAN/control
 echo Description: Bloat-free SDR receiver software >> $DIR/DEBIAN/control
