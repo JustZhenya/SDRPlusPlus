@@ -12,7 +12,7 @@ dnf install -y cmake gcc g++ git p7zip p7zip-plugins wget xxd libtool autoconf r
 wget https://www.sdrplay.com/software/SDRplay_RSP_API-Linux-3.15.2.run
 7z x ./SDRplay_RSP_API-Linux-3.15.2.run
 7z x ./SDRplay_RSP_API-Linux-3.15.2
-cp x86_64/libsdrplay_api.so.3.15 /usr/lib/libsdrplay_api.so
+cp amd64/libsdrplay_api.so.3.15 /usr/lib/libsdrplay_api.so
 cp inc/* /usr/include/
 
 # Install libperseus
