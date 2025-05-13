@@ -9,7 +9,7 @@ cat <<EOF >> ~/rpmbuild/SPECS/sdrpp.spec
 %global __requires_exclude libhackrf.so.0|libportaudio.so.2|librtlsdr.so.0|libfobos.so|libperseus-sdr.so.0|librfnm.so|libsdrplay_api.so.3
 
 Name:       sdrpp
-Version:    1.2.0
+Version:    1.2.1
 Release:    $BUILD_NO
 Summary:    SDR++
 Recommends: libhackrf.so.0()(64bit), libportaudio.so.2()(64bit), librtlsdr.so.0()(64bit), libfobos.so()(64bit), libperseus-sdr.so.0()(64bit), librfnm.so()(64bit), libsdrplay_api.so.3()(64bit)

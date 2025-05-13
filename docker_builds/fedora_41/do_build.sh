@@ -9,9 +9,9 @@ dnf install -y cmake gcc g++ git p7zip p7zip-plugins wget xxd libtool autoconf r
     rtaudio-devel hackrf-devel rtl-sdr-devel portaudio-devel codec2-devel spdlog-devel
 
 # Install SDRPlay libraries
-wget https://www.sdrplay.com/software/SDRplay_RSP_API-Linux-3.15.1.run
-7z x ./SDRplay_RSP_API-Linux-3.15.1.run
-7z x ./SDRplay_RSP_API-Linux-3.15.1
+wget https://www.sdrplay.com/software/SDRplay_RSP_API-Linux-3.15.2.run
+7z x ./SDRplay_RSP_API-Linux-3.15.2.run
+7z x ./SDRplay_RSP_API-Linux-3.15.2
 cp x86_64/libsdrplay_api.so.3.15 /usr/lib/libsdrplay_api.so
 cp inc/* /usr/include/
 
