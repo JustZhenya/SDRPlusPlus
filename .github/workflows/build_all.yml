@@ -255,7 +255,7 @@ jobs:
               name: sdrpp_debian_bookworm_amd64
               path: ${{runner.workspace}}/sdrpp_debian_amd64.deb
 
-    build_debian_bookworm_aarch64:
+    build_debian_bookworm_arm64:
         runs-on: ubuntu-24.04-arm
 
         steps:
@@ -269,13 +269,13 @@ jobs:
 
         - name: Recover Deb Archive
           working-directory: ${{runner.workspace}}
-          run: docker cp build:/root/SDRPlusPlus/sdrpp_debian_aarch64.deb ./
+          run: docker cp build:/root/SDRPlusPlus/sdrpp_debian_arm64.deb ./
 
         - name: Save Deb Archive
           uses: actions/upload-artifact@v4
           with:
-              name: sdrpp_debian_bookworm_aarch64
-              path: ${{runner.workspace}}/sdrpp_debian_aarch64.deb
+              name: sdrpp_debian_bookworm_arm64
+              path: ${{runner.workspace}}/sdrpp_debian_arm64.deb
 
     build_debian_sid:
         runs-on: ubuntu-latest
@@ -465,7 +465,7 @@ jobs:
           'build_macos_arm',
           'build_debian_bullseye',
           'build_debian_bookworm',
-          'build_debian_bookworm_aarch64',
+          'build_debian_bookworm_arm64',
           'build_debian_sid',
           'build_fedora_41',
           'build_fedora_42',
@@ -489,7 +489,7 @@ jobs:
             mv sdrpp_macos_arm/sdrpp_macos_arm.zip sdrpp_all/ && 
             mv sdrpp_debian_bullseye_amd64/sdrpp_debian_amd64.deb sdrpp_all/sdrpp_debian_bullseye_amd64.deb && 
             mv sdrpp_debian_bookworm_amd64/sdrpp_debian_amd64.deb sdrpp_all/sdrpp_debian_bookworm_amd64.deb && 
-            mv sdrpp_debian_bookworm_amd64/sdrpp_debian_aarch64.deb sdrpp_all/sdrpp_debian_bookworm_aarch64.deb && 
+            mv sdrpp_debian_bookworm_amd64/sdrpp_debian_arm64.deb sdrpp_all/sdrpp_debian_bookworm_arm64.deb && 
             mv sdrpp_debian_sid_amd64/sdrpp_debian_amd64.deb sdrpp_all/sdrpp_debian_sid_amd64.deb && 
             mv sdrpp_fedora_41_x86_64/sdrpp-1.2.1-$GITHUB_RUN_NUMBER.x86_64.rpm sdrpp_all/sdrpp_fedora_41_x86_64.rpm && 
             mv sdrpp_fedora_42_x86_64/sdrpp-1.2.1-$GITHUB_RUN_NUMBER.x86_64.rpm sdrpp_all/sdrpp_fedora_42_x86_64.rpm && 
