@@ -3,13 +3,8 @@ set -e
 cd /root
 
 # Install dependencies and tools
-<<<<<<<< HEAD:docker_builds/ubuntu_plucky/do_build.sh
 apt-get update
 apt-get install -y build-essential cmake git libfftw3-dev libglfw3-dev libvolk-dev libzstd-dev libairspyhf-dev libairspy-dev \
-========
-apt update
-apt install -y build-essential cmake git libfftw3-dev libglfw3-dev libvolk-dev libzstd-dev libairspyhf-dev libairspy-dev \
->>>>>>>> 8b8eda30 (add hydrasdr support to all platforms EXCEPT Windows and remote debian buster CI):docker_builds/debian_trixie/do_build.sh
             libiio-dev libad9361-dev librtaudio-dev libhackrf-dev librtlsdr-dev libbladerf-dev liblimesuite-dev p7zip-full wget portaudio19-dev \
             libcodec2-dev autoconf libtool xxd libspdlog-dev
 
@@ -48,16 +43,6 @@ mkdir build
 cd build
 cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr
 make -j`nproc`
-make install
-cd ../../
-
-# Install libhydrasdr
-git clone https://github.com/hydrasdr/rfone_host
-cd rfone_host
-mkdir build
-cd build
-cmake ..
-make -j2
 make install
 cd ../../
 
