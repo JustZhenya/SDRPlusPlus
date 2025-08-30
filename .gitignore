@@ -2,6 +2,7 @@ build/
 .vscode/
 .vs/
 .idea/
+.cache/
 *.old
 *.dll
 *.exe
