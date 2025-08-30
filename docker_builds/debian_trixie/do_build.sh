@@ -4,7 +4,7 @@ cd /root
 
 # Install dependencies and tools
 apt-get update
-apt-get install -y build-essential cmake git libfftw3-dev libglfw3-dev libvolk2-dev libzstd-dev libairspyhf-dev libairspy-dev \
+apt-get install -y build-essential cmake git libfftw3-dev libglfw3-dev libvolk-dev libzstd-dev libairspyhf-dev libairspy-dev \
             libiio-dev libad9361-dev librtaudio-dev libhackrf-dev librtlsdr-dev libbladerf-dev liblimesuite-dev p7zip-full wget portaudio19-dev \
             libcodec2-dev autoconf libtool xxd libspdlog-dev
 
@@ -53,4 +53,4 @@ cmake .. -DOPT_BUILD_BLADERF_SOURCE=ON -DOPT_BUILD_LIMESDR_SOURCE=ON -DOPT_BUILD
 make VERBOSE=1 -j`nproc`
 
 cd ..
-sh make_debian_package.sh ./build $BUILD_ARCH 'libc6, libgcc-s1, libstdc++6, libvolk2.4, libfftw3-single3, librtaudio6, libzstd1, libglfw3, libopengl0' 'libportaudio2, libad9361-0, libairspyhf1, libairspy0, libbladerf2, libcodec2-0.9, libhackrf0, libiio0, liblimesuite20.10-1, librtlsdr0'
+sh make_debian_package.sh ./build $BUILD_ARCH 'libc6, libgcc-s1, libstdc++6, libvolk3.2, libfftw3-single3, librtaudio7, libzstd1, libglfw3, libopengl0' 'libportaudio2, libad9361-0, libairspyhf1, libairspy0, libbladerf2, libcodec2-1.2, libhackrf0, libiio0, liblimesuite23.11-1, librtlsdr0'
