@@ -53,4 +53,4 @@ cmake .. -DOPT_BUILD_BLADERF_SOURCE=ON -DOPT_BUILD_LIMESDR_SOURCE=ON -DOPT_BUILD
 make VERBOSE=1 -j`nproc`
 
 cd ..
-sh make_debian_package.sh ./build $BUILD_ARCH 'libc6, libgcc-s1, libstdc++6, libvolk2.2, libfftw3-single3, librtaudio6, libzstd1, libglfw3, libopengl0' 'libportaudio2, libad9361-0, libairspyhf1, libairspy0, libbladerf2, libcodec2-0.9, libhackrf0, libiio0, liblimesuite20.01-1, librtlsdr0'
+sh make_debian_package.sh ./build $BUILD_ARCH 'libc6, libgcc-s1, libstdc++6, libvolk2.4, libfftw3-single3, librtaudio6, libzstd1, libglfw3, libopengl0' 'libportaudio2, libad9361-0, libairspyhf1, libairspy0, libbladerf2, libcodec2-0.9, libhackrf0, libiio0, liblimesuite20.10-1, librtlsdr0'

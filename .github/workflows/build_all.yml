@@ -298,6 +298,50 @@ jobs:
           with:
               name: sdrpp_debian_bookworm_arm64
               path: ${{runner.workspace}}/sdrpp_debian_arm64.deb
+    
+    build_debian_trixie:
+        runs-on: ubuntu-latest
+
+        steps:
+        - uses: actions/checkout@v4
+        
+        - name: Create Docker Image
+          run: cd $GITHUB_WORKSPACE/docker_builds/debian_trixie && docker build . --tag sdrpp_build
+
+        - name: Run Container
+          run: docker run --name build -v $GITHUB_WORKSPACE:/root/SDRPlusPlus --env BUILD_NO="-$GITHUB_RUN_NUMBER" sdrpp_build /root/do_build.sh
+
+        - name: Recover Deb Archive
+          working-directory: ${{runner.workspace}}
+          run: docker cp build:/root/SDRPlusPlus/sdrpp_debian_amd64.deb ./
+
+        - name: Save Deb Archive
+          uses: actions/upload-artifact@v4
+          with:
+              name: sdrpp_debian_trixie_amd64
+              path: ${{runner.workspace}}/sdrpp_debian_amd64.deb
+
+    build_debian_trixie_arm64:
+        runs-on: ubuntu-24.04-arm
+
+        steps:
+        - uses: actions/checkout@v4
+        
+        - name: Create Docker Image
+          run: cd $GITHUB_WORKSPACE/docker_builds/debian_trixie && docker build . --tag sdrpp_build
+
+        - name: Run Container
+          run: docker run --name build -v $GITHUB_WORKSPACE:/root/SDRPlusPlus --env BUILD_NO="-$GITHUB_RUN_NUMBER" sdrpp_build /root/do_build.sh
+
+        - name: Recover Deb Archive
+          working-directory: ${{runner.workspace}}
+          run: docker cp build:/root/SDRPlusPlus/sdrpp_debian_arm64.deb ./
+
+        - name: Save Deb Archive
+          uses: actions/upload-artifact@v4
+          with:
+              name: sdrpp_debian_trixie_arm64
+              path: ${{runner.workspace}}/sdrpp_debian_arm64.deb
 
     build_debian_sid:
         runs-on: ubuntu-latest
@@ -386,50 +430,6 @@ jobs:
           with:
               name: sdrpp_fedora_42_x86_64
               path: ${{runner.workspace}}/sdrpp-1.2.1-${{github.run_number}}.x86_64.rpm
-
-    build_ubuntu_focal:
-        runs-on: ubuntu-latest
-
-        steps:
-        - uses: actions/checkout@v4
-        
-        - name: Create Docker Image
-          run: cd $GITHUB_WORKSPACE/docker_builds/ubuntu_focal && docker build . --tag sdrpp_build
-
-        - name: Run Container
-          run: docker run --name build -v $GITHUB_WORKSPACE:/root/SDRPlusPlus --env BUILD_NO="-$GITHUB_RUN_NUMBER" sdrpp_build /root/do_build.sh
-
-        - name: Recover Deb Archive
-          working-directory: ${{runner.workspace}}
-          run: docker cp build:/root/SDRPlusPlus/sdrpp_debian_amd64.deb ./
-
-        - name: Save Deb Archive
-          uses: actions/upload-artifact@v4
-          with:
-              name: sdrpp_ubuntu_focal_amd64
-              path: ${{runner.workspace}}/sdrpp_debian_amd64.deb
-
-    build_ubuntu_focal_arm64:
-        runs-on: ubuntu-24.04-arm
-
-        steps:
-        - uses: actions/checkout@v4
-        
-        - name: Create Docker Image
-          run: cd $GITHUB_WORKSPACE/docker_builds/ubuntu_focal && docker build . --tag sdrpp_build
-
-        - name: Run Container
-          run: docker run --name build -v $GITHUB_WORKSPACE:/root/SDRPlusPlus --env BUILD_NO="-$GITHUB_RUN_NUMBER" sdrpp_build /root/do_build.sh
-
-        - name: Recover Deb Archive
-          working-directory: ${{runner.workspace}}
-          run: docker cp build:/root/SDRPlusPlus/sdrpp_debian_arm64.deb ./
-
-        - name: Save Deb Archive
-          uses: actions/upload-artifact@v4
-          with:
-              name: sdrpp_ubuntu_focal_arm64
-              path: ${{runner.workspace}}/sdrpp_debian_arm64.deb
 
     build_ubuntu_jammy:
         runs-on: ubuntu-latest
@@ -643,12 +643,12 @@ jobs:
           'build_debian_bullseye_arm64',
           'build_debian_bookworm',
           'build_debian_bookworm_arm64',
+          'build_debian_trixie',
+          'build_debian_trixie_arm64',
           'build_debian_sid',
           'build_debian_sid_arm64',
           'build_fedora_41',
           'build_fedora_42',
-          'build_ubuntu_focal',
-          'build_ubuntu_focal_arm64',
           'build_ubuntu_jammy',
           'build_ubuntu_jammy_arm64',
           'build_ubuntu_noble',
@@ -675,12 +675,12 @@ jobs:
             mv sdrpp_debian_bullseye_arm64/sdrpp_debian_arm64.deb sdrpp_all/sdrpp_debian_bullseye_arm64.deb && 
             mv sdrpp_debian_bookworm_amd64/sdrpp_debian_amd64.deb sdrpp_all/sdrpp_debian_bookworm_amd64.deb && 
             mv sdrpp_debian_bookworm_arm64/sdrpp_debian_arm64.deb sdrpp_all/sdrpp_debian_bookworm_arm64.deb && 
+            mv sdrpp_debian_trixie_amd64/sdrpp_debian_amd64.deb sdrpp_all/sdrpp_debian_trixie_amd64.deb && 
+            mv sdrpp_debian_trixie_arm64/sdrpp_debian_arm64.deb sdrpp_all/sdrpp_debian_trixie_arm64.deb && 
             mv sdrpp_debian_sid_amd64/sdrpp_debian_amd64.deb sdrpp_all/sdrpp_debian_sid_amd64.deb && 
             mv sdrpp_debian_sid_arm64/sdrpp_debian_arm64.deb sdrpp_all/sdrpp_debian_sid_arm64.deb && 
             mv sdrpp_fedora_41_x86_64/sdrpp-1.2.1-$GITHUB_RUN_NUMBER.x86_64.rpm sdrpp_all/sdrpp_fedora_41_x86_64.rpm && 
             mv sdrpp_fedora_42_x86_64/sdrpp-1.2.1-$GITHUB_RUN_NUMBER.x86_64.rpm sdrpp_all/sdrpp_fedora_42_x86_64.rpm && 
-            mv sdrpp_ubuntu_focal_amd64/sdrpp_debian_amd64.deb sdrpp_all/sdrpp_ubuntu_focal_amd64.deb && 
-            mv sdrpp_ubuntu_focal_arm64/sdrpp_debian_arm64.deb sdrpp_all/sdrpp_ubuntu_focal_arm64.deb && 
             mv sdrpp_ubuntu_jammy_amd64/sdrpp_debian_amd64.deb sdrpp_all/sdrpp_ubuntu_jammy_amd64.deb && 
             mv sdrpp_ubuntu_jammy_arm64/sdrpp_debian_arm64.deb sdrpp_all/sdrpp_ubuntu_jammy_arm64.deb && 
             mv sdrpp_ubuntu_noble_amd64/sdrpp_debian_amd64.deb sdrpp_all/sdrpp_ubuntu_noble_amd64.deb && 
