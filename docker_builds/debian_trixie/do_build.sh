@@ -6,7 +6,7 @@ cd /root
 apt-get update
 apt-get install -y build-essential cmake git libfftw3-dev libglfw3-dev libvolk-dev libzstd-dev libairspyhf-dev libairspy-dev \
             libiio-dev libad9361-dev librtaudio-dev libhackrf-dev librtlsdr-dev libbladerf-dev liblimesuite-dev p7zip-full wget portaudio19-dev \
-            libcodec2-dev autoconf libtool xxd libspdlog-dev
+            libcodec2-dev autoconf libtool xxd libspdlog-dev libuhd-dev
 
 # Install SDRPlay libraries
 BUILD_ARCH=$(dpkg --print-architecture)
@@ -49,8 +49,8 @@ cd ../../
 cd SDRPlusPlus
 mkdir build
 cd build
-cmake .. -DOPT_BUILD_BLADERF_SOURCE=ON -DOPT_BUILD_LIMESDR_SOURCE=ON -DOPT_BUILD_SDRPLAY_SOURCE=ON -DOPT_BUILD_NEW_PORTAUDIO_SINK=ON -DOPT_BUILD_M17_DECODER=ON -DOPT_BUILD_PERSEUS_SOURCE=ON -DOPT_BUILD_RFNM_SOURCE=ON -DOPT_BUILD_FOBOSSDR_SOURCE=ON
+cmake .. -DOPT_BUILD_BLADERF_SOURCE=ON -DOPT_BUILD_LIMESDR_SOURCE=ON -DOPT_BUILD_SDRPLAY_SOURCE=ON -DOPT_BUILD_NEW_PORTAUDIO_SINK=ON -DOPT_BUILD_M17_DECODER=ON -DOPT_BUILD_PERSEUS_SOURCE=ON -DOPT_BUILD_RFNM_SOURCE=ON -DOPT_BUILD_FOBOSSDR_SOURCE=ON -DOPT_BUILD_USRP_SOURCE=ON
 make VERBOSE=1 -j`nproc`
 
 cd ..
-sh make_debian_package.sh ./build $BUILD_ARCH 'libc6, libgcc-s1, libstdc++6, libvolk3.2, libfftw3-single3, librtaudio7, libzstd1, libglfw3, libopengl0' 'libportaudio2, libad9361-0, libairspyhf1, libairspy0, libbladerf2, libcodec2-1.2, libhackrf0, libiio0, liblimesuite23.11-1, librtlsdr0'
+sh make_debian_package.sh ./build $BUILD_ARCH 'libc6, libgcc-s1, libstdc++6, libvolk3.2, libfftw3-single3, librtaudio7, libzstd1, libglfw3, libopengl0' 'libportaudio2, libad9361-0, libairspyhf1, libairspy0, libbladerf2, libcodec2-1.2, libhackrf0, libiio0, liblimesuite23.11-1, librtlsdr0, libuhd4.8.0'
