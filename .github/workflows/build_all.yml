@@ -519,50 +519,6 @@ jobs:
               name: sdrpp_ubuntu_noble_arm64
               path: ${{runner.workspace}}/sdrpp_debian_arm64.deb
 
-    build_ubuntu_oracular:
-        runs-on: ubuntu-latest
-
-        steps:
-        - uses: actions/checkout@v4
-        
-        - name: Create Docker Image
-          run: cd $GITHUB_WORKSPACE/docker_builds/ubuntu_oracular && docker build . --tag sdrpp_build
-
-        - name: Run Container
-          run: docker run --name build -v $GITHUB_WORKSPACE:/root/SDRPlusPlus --env BUILD_NO="-$GITHUB_RUN_NUMBER" sdrpp_build /root/do_build.sh
-
-        - name: Recover Deb Archive
-          working-directory: ${{runner.workspace}}
-          run: docker cp build:/root/SDRPlusPlus/sdrpp_debian_amd64.deb ./
-
-        - name: Save Deb Archive
-          uses: actions/upload-artifact@v4
-          with:
-              name: sdrpp_ubuntu_oracular_amd64
-              path: ${{runner.workspace}}/sdrpp_debian_amd64.deb
-
-    build_ubuntu_oracular_arm64:
-        runs-on: ubuntu-24.04-arm
-
-        steps:
-        - uses: actions/checkout@v4
-        
-        - name: Create Docker Image
-          run: cd $GITHUB_WORKSPACE/docker_builds/ubuntu_oracular && docker build . --tag sdrpp_build
-
-        - name: Run Container
-          run: docker run --name build -v $GITHUB_WORKSPACE:/root/SDRPlusPlus --env BUILD_NO="-$GITHUB_RUN_NUMBER" sdrpp_build /root/do_build.sh
-
-        - name: Recover Deb Archive
-          working-directory: ${{runner.workspace}}
-          run: docker cp build:/root/SDRPlusPlus/sdrpp_debian_arm64.deb ./
-
-        - name: Save Deb Archive
-          uses: actions/upload-artifact@v4
-          with:
-              name: sdrpp_ubuntu_oracular_arm64
-              path: ${{runner.workspace}}/sdrpp_debian_arm64.deb
-
     build_ubuntu_plucky:
         runs-on: ubuntu-latest
 
@@ -653,8 +609,6 @@ jobs:
           'build_ubuntu_jammy_arm64',
           'build_ubuntu_noble',
           'build_ubuntu_noble_arm64',
-          'build_ubuntu_oracular',
-          'build_ubuntu_oracular_arm64',
           'build_ubuntu_plucky',
           'build_ubuntu_plucky_arm64',
           'build_android'
@@ -685,8 +639,6 @@ jobs:
             mv sdrpp_ubuntu_jammy_arm64/sdrpp_debian_arm64.deb sdrpp_all/sdrpp_ubuntu_jammy_arm64.deb && 
             mv sdrpp_ubuntu_noble_amd64/sdrpp_debian_amd64.deb sdrpp_all/sdrpp_ubuntu_noble_amd64.deb && 
             mv sdrpp_ubuntu_noble_arm64/sdrpp_debian_arm64.deb sdrpp_all/sdrpp_ubuntu_noble_arm64.deb && 
-            mv sdrpp_ubuntu_oracular_amd64/sdrpp_debian_amd64.deb sdrpp_all/sdrpp_ubuntu_oracular_amd64.deb && 
-            mv sdrpp_ubuntu_oracular_arm64/sdrpp_debian_arm64.deb sdrpp_all/sdrpp_ubuntu_oracular_arm64.deb && 
             mv sdrpp_ubuntu_plucky_amd64/sdrpp_debian_amd64.deb sdrpp_all/sdrpp_ubuntu_plucky_amd64.deb && 
             mv sdrpp_ubuntu_plucky_arm64/sdrpp_debian_arm64.deb sdrpp_all/sdrpp_ubuntu_plucky_arm64.deb && 
             mv sdrpp_android/sdrpp.apk sdrpp_all/
