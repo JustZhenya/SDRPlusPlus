@@ -106,6 +106,7 @@ public:
 
         // Make device
         auto dev = uhd::usrp::multi_usrp::make(devices[devId]);
+        dev->set_master_clock_rate(56e6, dev->ALL_MBOARDS);
 
         // List subdevices
         char buf[1024];
