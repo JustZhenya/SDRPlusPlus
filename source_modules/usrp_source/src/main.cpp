@@ -108,7 +108,7 @@ public:
         auto dev = uhd::usrp::multi_usrp::make(devices[devId]);
 
         // Set master clock rate
-        double mclk = 16000000;
+        double mclk = master_clock_rate;
         config.acquire();
         if (config.conf["devices"][selectedSer].contains("master_clock_rate")) {
             mclk = config.conf["devices"][selectedSer]["master_clock_rate"].get<double>();
@@ -360,11 +360,11 @@ private:
         SmGui::LeftLabel("Master clock");
         SmGui::FillWidth();
         SmGui::ForceSync();
-        int master_clock_rate;
-        if (SmGui::InputInt(CONCAT("##_usrp_ms_clk_", _this->name), &master_clock_rate)) {
+        if (SmGui::InputInt(CONCAT("##_usrp_ms_clk_", _this->name), &_this->master_clock_rate)) {
+            _this->master_clock_rate = std::clamp(_this->master_clock_rate, 5000000, 61440000);
             if (!_this->selectedSer.empty()) {
                 config.acquire();
-                config.conf["devices"][_this->selectedSer]["master_clock_rate"] = master_clock_rate;
+                config.conf["devices"][_this->selectedSer]["master_clock_rate"] = _this->master_clock_rate;
                 config.release(true);
             }
         }
@@ -492,6 +492,7 @@ private:
     std::string selectedSer = "";
     std::string selectedChan = "";
     float gain = 0.0f;
+    int master_clock_rate = 16000000;
 
     OptionList<std::string, uhd::device_addr_t> devices;
     OptionList<std::string, std::string> channels;
