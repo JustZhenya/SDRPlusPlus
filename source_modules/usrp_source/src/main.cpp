@@ -106,7 +106,15 @@ public:
 
         // Make device
         auto dev = uhd::usrp::multi_usrp::make(devices[devId]);
-        dev->set_master_clock_rate(56e6, dev->ALL_MBOARDS);
+
+        // Set master clock rate
+        double mclk = 16000000;
+        config.acquire();
+        if (config.conf["devices"][selectedSer].contains("master_clock_rate")) {
+            mclk = config.conf["devices"][selectedSer]["master_clock_rate"].get<double>();
+        }
+        config.release();
+        dev->set_master_clock_rate(mclk, 0);
 
         // List subdevices
         char buf[1024];
@@ -347,6 +355,18 @@ private:
             _this->refresh();
             _this->select(_this->selectedSer);
             core::setInputSampleRate(_this->sampleRate);
+        }
+
+        SmGui::LeftLabel("Master clock");
+        SmGui::FillWidth();
+        SmGui::ForceSync();
+        int master_clock_rate;
+        if (SmGui::InputInt(CONCAT("##_usrp_ms_clk_", _this->name), &master_clock_rate)) {
+            if (!_this->selectedSer.empty()) {
+                config.acquire();
+                config.conf["devices"][_this->selectedSer]["master_clock_rate"] = master_clock_rate;
+                config.release(true);
+            }
         }
 
         if (_this->channels.size() > 1) {
