@@ -274,6 +274,7 @@ private:
 
         _this->dev = uhd::usrp::multi_usrp::make(_this->devices[_this->devId]);
 
+        _this->dev->set_master_clock_rate(_this->master_clock_rate, 0);
         _this->dev->set_rx_rate(_this->sampleRate, _this->chanId);
         _this->dev->set_rx_antenna(_this->antennas.key(_this->antId), _this->chanId);
         _this->dev->set_rx_gain(_this->gain, _this->chanId);
