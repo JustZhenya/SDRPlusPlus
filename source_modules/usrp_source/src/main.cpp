@@ -112,6 +112,7 @@ public:
         config.acquire();
         if (config.conf["devices"][selectedSer].contains("master_clock_rate")) {
             mclk = config.conf["devices"][selectedSer]["master_clock_rate"].get<double>();
+            master_clock_rate = mclk;
         }
         config.release();
         dev->set_master_clock_rate(mclk, 0);
